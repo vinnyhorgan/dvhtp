@@ -8,6 +8,11 @@
 # - archinstall successfully completed
 # - must be setup with: ext4 main partition, sway desktop profile (polkit), ly greeter, pipewire
 
+# this will setup a base system that has everything needed to get started!
+# sets up all the firmware, installs sway and several other useful tools!
+# *it installs: sway, swaybg, swayidle, wmenu, brightnessctl, grim, slurp, foot, pavucontrol and xwayland
+# it sets up our network using iwd which is the best modern way to manage networks.
+
 # installation
 
 # run
@@ -35,7 +40,7 @@ else
   log "yay is already installed."
 fi
 
-# remove some packages
+# remove some packages included in the default installation
 yay -Rns --noconfirm swaylock 2>/dev/null || true
 yay -Rns --noconfirm waybar 2>/dev/null || true
 yay -Rns --noconfirm nano 2>/dev/null || true
@@ -74,6 +79,7 @@ yay -S --needed --noconfirm bibata-cursor-theme-bin
 # also tweak the helium settings as needed
 # install a few more extensions and themes, such as dark reader, material icons, sponsorblock, return dislike.
 # also install bitwarden, as helium has no built-in password manager
+# one other thing: set the download folder to "downloads", for style choice but also to show the cool icon
 yay -S --needed --noconfirm helium-browser-bin
 
 # notification daemon
@@ -90,6 +96,9 @@ yay -S --needed --noconfirm starship
 
 # night mode
 yay -S --needed --noconfirm gammastep
+
+# notification helper
+yay -S --needed --noconfirm libnotify
 
 # utils
 yay -S --needed --noconfirm eza
@@ -505,4 +514,4 @@ wget -qO "$wp_file" "$wp_url"
 
 log "wallpaper saved to $wp_file"
 
-log "all done. enjoy :)"
+log "all done. reboot and enjoy :)"
