@@ -81,6 +81,11 @@ yay -S --needed --noconfirm starship
 # night mode
 yay -S --needed --noconfirm gammastep
 
+# utils
+yay -S --needed --noconfirm eza
+yay -S --needed --noconfirm bat
+yay -S --needed --noconfirm btop
+
 # foot
 log "configuring foot terminal..."
 
@@ -105,7 +110,54 @@ alpha-mode=matching
 EOF
 
 mkdir -p "$HOME/.config/foot"
-
 ln -sfn "$HOME/.dvhtp/foot.ini" "$HOME/.config/foot/foot.ini"
+
+# fish
+log "configuring fish shell..."
+
+cat > "$HOME/.dvhtp/config.fish" <<'EOF'
+function fish_greeting
+end
+
+alias cat="bat --paging=never --style=plain --theme='gruvbox-dark'"
+alias ls="eza --group-directories-first --icons"
+alias ll="eza -lah --group-directories-first --icons"
+alias la="eza -a --group-directories-first --icons"
+alias top="btop"
+
+alias c="clear"
+alias l="ls"
+alias h="helix"
+alias ..="cd .."
+alias update="yay"
+alias install="yay -S"
+alias remove="yay -Rns"
+alias pls="sudo"
+
+function fish_command_not_found
+  echo -n "what the hell is '"
+  set_color red
+  echo -n $argv
+  set_color normal
+  echo "' ??"
+end
+
+starship init fish | source
+EOF
+
+mkdir -p "$HOME/.config/fish"
+ln -sfn "$HOME/.dvhtp/config.fish" "$HOME/.config/fish/config.fish"
+
+# wallpaper
+log "fetching wallpaper…"
+
+wp_url="https://gruvbox-wallpapers.pages.dev/wallpapers/minimalistic/gruvbox_minimal_space.png"
+wp_dir="$HOME/pictures"
+wp_file="$wp_dir/bg.png"
+
+mkdir -p "$wp_dir"
+wget -qO "$wp_file" "$wp_url"
+
+log "wallpaper saved to $wp_file"
 
 log "all done. enjoy :)"
