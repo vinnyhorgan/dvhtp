@@ -64,7 +64,10 @@ yay -S --needed --noconfirm bibata-cursor-theme-bin
 # main programs :)
 
 # zen, best browser (activate sync for better setup experience)
-yay -S --needed --noconfirm zen-browser-bin
+# yay -S --needed --noconfirm zen-browser-bin
+
+# test helium...
+yay -S --needed --noconfirm helium-browser-bin
 
 # notification daemon
 yay -S --needed --noconfirm mako
