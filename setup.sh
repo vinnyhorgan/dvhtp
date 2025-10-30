@@ -21,13 +21,6 @@ log() { printf "\033[1;32m==>\033[0m %s\n" "$*"; }
 
 log "welcome to dvh's awesome thinkpad configuration :)"
 
-# setup tlp
-if ls /sys/class/power_supply/ | grep -q BAT; then
-  log "laptop device detected."
-else
-  log "desktop device detected."
-fi
-
 # setup yay
 
 if ! command -v yay &>/dev/null; then
@@ -38,6 +31,21 @@ if ! command -v yay &>/dev/null; then
   makepkg -si --noconfirm
 else
   log "yay is already installed."
+fi
+
+# setup tlp
+if ls /sys/class/power_supply/ | grep -q BAT; then
+  log "laptop device detected."
+
+  if ! command -v tlp &>/dev/null; then
+    log "installing tlp..."
+    yay -S --needed --noconfirm tlp
+    sudo systemctl enable tlp.service
+  else
+    log "tlp is already installed."
+  fi
+else
+  log "desktop device detected."
 fi
 
 # setup font
