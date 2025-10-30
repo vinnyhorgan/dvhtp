@@ -60,3 +60,20 @@ yay -S --needed --noconfirm ttf-jetbrains-mono-nerd
 
 # setup cursor
 yay -S --needed --noconfirm bibata-cursor-theme-bin
+
+# main programs :)
+
+# zen, best browser
+yay -S --needed --noconfirm zen-browser-bin
+
+# notification daemon
+yay -S --needed --noconfirm mako
+
+# best shell
+yay -S --needed --noconfirm fish
+
+# best editor
+yay -S --needed --noconfirm helix
+
+# best prompt
+yay -S --needed --noconfirm starship
