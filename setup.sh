@@ -100,15 +100,26 @@ yay -S --needed --noconfirm gammastep
 # notification helper
 yay -S --needed --noconfirm libnotify
 
+# file manager :)
+yay -S --needed yazi ffmpeg 7zip jq poppler fd ripgrep fzf zoxide resvg imagemagick
+
+# clipboard manager
+yay -S --needed cliphist
+
+# status bar manager
+yay -S --needed i3status-rust
+
 # utils
 yay -S --needed --noconfirm eza
 yay -S --needed --noconfirm bat
 yay -S --needed --noconfirm btop
 yay -S --needed --noconfirm fastfetch
 yay -S --needed --noconfirm lazygit
+yay -S --needed --noconfirm imv
 
 # for some reason this is not installed by default, but is needed by many tools
 yay -S --needed --noconfirm less
+yay -S --needed --noconfirm unzip
 
 # foot
 log "configuring foot terminal..."
