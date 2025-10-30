@@ -73,6 +73,7 @@ yay -S --needed --noconfirm bibata-cursor-theme-bin
 # to have a good experience browsing for now i had to integrate the noto-fonts and noto-fonts-emoji packages
 # also tweak the helium settings as needed
 # install a few more extensions and themes, such as dark reader, material icons, sponsorblock, return dislike.
+# also install bitwarden, as helium has no built-in password manager
 yay -S --needed --noconfirm helium-browser-bin
 
 # notification daemon
@@ -295,7 +296,7 @@ EOF
 ln -sfn "$HOME/.dvhtp/starship.toml" "$HOME/.config/starship.toml"
 
 # sway
-log "configuring fish shell..."
+log "configuring sway..."
 
 cat > "$HOME/.dvhtp/sway" <<'EOF'
 set $mod Mod4
@@ -451,6 +452,46 @@ EOF
 
 mkdir -p "$HOME/.config/sway"
 ln -sfn "$HOME/.dvhtp/sway" "$HOME/.config/sway/config"
+
+# helix editor
+
+cat > "$HOME/.dvhtp/helix.toml" <<'EOF'
+theme = "gruvbox"
+
+[editor]
+mouse = false
+middle-click-paste = false
+line-number = "relative"
+cursorline = false
+bufferline = "multiple"
+color-modes = true
+trim-trailing-whitespace = true
+
+[editor.statusline]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.insert]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+
+[keys.normal]
+up = "no_op"
+down = "no_op"
+left = "no_op"
+right = "no_op"
+EOF
+
+mkdir -p "$HOME/.config/helix"
+ln -sfn "$HOME/.dvhtp/helix.toml" "$HOME/.config/helix/config.toml"
 
 # wallpaper
 log "fetching wallpaper…"
