@@ -22,3 +22,13 @@ set -euo pipefail
 log() { printf "\033[1;32m==>\033[0m %s\n" "$*"; }
 
 log "welcome to dvh's awesome thinkpad configuration :)"
+
+if ! command -v yay &>/dev/null; then
+  log "installing yay..."
+  sudo pacman -S --needed --noconfirm git base-devel
+  git clone https://aur.archlinux.org/yay-bin.git /tmp/yay
+  cd /tmp/yay
+  makepkg -si --noconfirm
+else
+  log "yay is already installed."
+fi
