@@ -33,6 +33,13 @@ else
   log "yay is already installed."
 fi
 
+# remove some packages
+yay -Rns --noconfirm swaylock 2>/dev/null || true
+yay -Rns --noconfirm waybar 2>/dev/null || true
+yay -Rns --noconfirm nano 2>/dev/null || true
+yay -Rns --noconfirm vim 2>/dev/null || true
+yay -Rns --noconfirm htop 2>/dev/null || true
+
 # setup tlp
 if ls /sys/class/power_supply/ | grep -q BAT; then
   log "laptop device detected."
