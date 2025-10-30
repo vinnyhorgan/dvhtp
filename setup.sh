@@ -148,6 +148,8 @@ alias ls="eza --group-directories-first --icons"
 alias ll="eza -lah --group-directories-first --icons"
 alias la="eza -a --group-directories-first --icons"
 alias top="btop"
+alias ff="fastfetch"
+alias lg="lazygit"
 
 alias c="clear"
 alias l="ls"
@@ -501,6 +503,24 @@ EOF
 
 mkdir -p "$HOME/.config/helix"
 ln -sfn "$HOME/.dvhtp/helix.toml" "$HOME/.config/helix/config.toml"
+
+# setup ly
+
+cat > "$HOME/.dvhtp/ly.ini" <<'EOF'
+allow_empty_password = false
+animation = matrix
+asterisk = 0x2022
+bg = 0x00282828
+bigclock = en
+cmatrix_fg = 0x00D79921
+hide_key_hints = true
+session_log = .ly-session.log
+EOF
+
+sudo ln -sfn "$HOME/.dvhtp/ly.ini" "/etc/ly/config.ini"
+
+# remove existing ly log file
+rm -f "$HOME/ly-session.log"
 
 # wallpaper
 log "fetching wallpaper…"
