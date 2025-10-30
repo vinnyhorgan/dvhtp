@@ -63,7 +63,7 @@ yay -S --needed --noconfirm bibata-cursor-theme-bin
 
 # main programs :)
 
-# zen, best browser
+# zen, best browser (activate sync for better setup experience)
 yay -S --needed --noconfirm zen-browser-bin
 
 # notification daemon
@@ -77,3 +77,35 @@ yay -S --needed --noconfirm helix
 
 # best prompt
 yay -S --needed --noconfirm starship
+
+# night mode
+yay -S --needed --noconfirm gammastep
+
+# foot
+log "configuring foot terminal..."
+
+mkdir -p "$HOME/.dvhtp"
+
+cat > "$HOME/.dvhtp/foot.ini" <<'EOF'
+include=/usr/share/foot/themes/gruvbox-dark
+shell=/usr/bin/fish
+font=JetBrainsMono Nerd Font:size=14
+pad=8x8
+
+[cursor]
+style=beam
+blink=yes
+
+[mouse]
+hide-when-typing=yes
+
+[colors]
+alpha=0.9
+alpha-mode=matching
+EOF
+
+mkdir -p "$HOME/.config/foot"
+
+ln -sfn "$HOME/.dvhtp/foot.ini" "$HOME/.config/foot/foot.ini"
+
+log "all done. enjoy :)"
