@@ -3,12 +3,10 @@
 # welcome to dvh's awesome thinkpad configuration :)
 # late 2025 edition
 
-# core assumptions (further development might help remove some)
+# core assumptions
 
-# - target is a laptop
 # - archinstall successfully completed
-#   - must be setup with: ext4 main partition, sway desktop profile (polkit), ly greeter, pipewire
-# - no other command has been run yet
+# - must be setup with: ext4 main partition, sway desktop profile (polkit), ly greeter, pipewire
 
 # installation
 
@@ -23,6 +21,15 @@ log() { printf "\033[1;32m==>\033[0m %s\n" "$*"; }
 
 log "welcome to dvh's awesome thinkpad configuration :)"
 
+# setup tlp
+if ls /sys/class/power_supply/ | grep -q BAT; then
+  log "laptop device detected."
+else
+  log "desktop device detected."
+fi
+
+# setup yay
+
 if ! command -v yay &>/dev/null; then
   log "installing yay..."
   sudo pacman -S --needed --noconfirm git base-devel
@@ -32,3 +39,9 @@ if ! command -v yay &>/dev/null; then
 else
   log "yay is already installed."
 fi
+
+# setup font
+yay -S --needed --noconfirm ttf-jetbrains-mono-nerd
+
+# setup cursor
+yay -S --needed --noconfirm bibata-cursor-theme-bin
