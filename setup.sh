@@ -13,6 +13,8 @@
 # run
 # wget -qO- https://raw.githubusercontent.com/vinnyhorgan/dvhtp/refs/heads/main/setup.sh | bash
 
+# remember to setup git as well.
+
 # enjoy :)
 
 set -euo pipefail
@@ -67,6 +69,10 @@ yay -S --needed --noconfirm bibata-cursor-theme-bin
 # yay -S --needed --noconfirm zen-browser-bin
 
 # test helium...
+# for the browser some more testing is required
+# to have a good experience browsing for now i had to integrate the noto-fonts and noto-fonts-emoji packages
+# also tweak the helium settings as needed
+# install a few more extensions and themes, such as dark reader, material icons, sponsorblock, return dislike.
 yay -S --needed --noconfirm helium-browser-bin
 
 # notification daemon
@@ -88,6 +94,11 @@ yay -S --needed --noconfirm gammastep
 yay -S --needed --noconfirm eza
 yay -S --needed --noconfirm bat
 yay -S --needed --noconfirm btop
+yay -S --needed --noconfirm fastfetch
+yay -S --needed --noconfirm lazygit
+
+# for some reason this is not installed by default, but is needed by many tools
+yay -S --needed --noconfirm less
 
 # foot
 log "configuring foot terminal..."
@@ -214,7 +225,7 @@ truncation_symbol = "…/"
 
 [directory.substitutions]
 "documents" = "󰈙 "
-"Downloads" = " "
+"downloads" = " "
 "pictures" = " "
 "dev" = "󰲋 "
 
