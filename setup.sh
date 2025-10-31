@@ -16,7 +16,7 @@
 # NOTE: this setup is supposed to be opinionated obviously...
 # but in some cases, right now, it's REALLY opinionated towards not only my preferences
 # but my specific computer, for example:
-# keyboard layout, dual batteries and so on...
+# keyboard layout, dual batteries, development preferences and so on...
 # i will try to fix this.
 
 # installation
@@ -120,6 +120,9 @@ yay -S --needed i3status-rust
 # doing it manually would be a pain, fortunately there is nwg-look. on first launch
 # just open it and tweak the few settings there are
 yay -S --needed nwg-look
+
+# lua formatter
+yay -S --needed stylua
 
 # utils
 yay -S --needed --noconfirm eza
@@ -496,7 +499,7 @@ theme = "gruvbox"
 mouse = false
 middle-click-paste = false
 line-number = "relative"
-cursorline = false
+cursorline = true
 bufferline = "multiple"
 color-modes = true
 trim-trailing-whitespace = true
@@ -524,8 +527,18 @@ left = "no_op"
 right = "no_op"
 EOF
 
+cat > "$HOME/.dvhtp/helix-lang.toml" <<'EOF'
+[[language]]
+name = "lua"
+indent = { tab-width = 2, unit = "\t" }
+language-servers = []
+auto-format = true
+formatter = { command = "stylua", args = ["-"] }
+EOF
+
 mkdir -p "$HOME/.config/helix"
 ln -sfn "$HOME/.dvhtp/helix.toml" "$HOME/.config/helix/config.toml"
+ln -sfn "$HOME/.dvhtp/helix-lang.toml" "$HOME/.config/helix/languages.toml"
 
 # setup status bar
 
