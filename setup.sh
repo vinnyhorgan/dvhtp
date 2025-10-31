@@ -124,6 +124,10 @@ yay -S --needed nwg-look
 # lua formatter
 yay -S --needed stylua
 
+# zig setup
+yay -S --needed zig
+yay -S --needed zls
+
 # utils
 yay -S --needed --noconfirm eza
 yay -S --needed --noconfirm bat
