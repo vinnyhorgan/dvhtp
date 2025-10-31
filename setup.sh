@@ -13,6 +13,12 @@
 # *it installs: sway, swaybg, swayidle, wmenu, brightnessctl, grim, slurp, foot, pavucontrol and xwayland
 # it sets up our network using iwd which is the best modern way to manage networks.
 
+# NOTE: this setup is supposed to be opinionated obviously...
+# but in some cases, right now, it's REALLY opinionated towards not only my preferences
+# but my specific computer, for example:
+# keyboard layout, dual batteries and so on...
+# i will try to fix this.
+
 # installation
 
 # run
@@ -108,6 +114,12 @@ yay -S --needed cliphist
 
 # status bar manager
 yay -S --needed i3status-rust
+
+# gtk editor
+# gtk is a big pain... some apps like pavucontrol benefit from a little editing
+# doing it manually would be a pain, fortunately there is nwg-look. on first launch
+# just open it and tweak the few settings there are
+yay -S --needed nwg-look
 
 # utils
 yay -S --needed --noconfirm eza
@@ -460,7 +472,7 @@ bindsym Print exec grim
 bar {
   position top
 
-  status_command while date +'%d-%m-%Y %H:%M'; do sleep 60; done
+  status_command i3status-rs
 
   colors {
     statusline #ffffff
@@ -514,6 +526,55 @@ EOF
 
 mkdir -p "$HOME/.config/helix"
 ln -sfn "$HOME/.dvhtp/helix.toml" "$HOME/.config/helix/config.toml"
+
+# setup status bar
+
+cat > "$HOME/.dvhtp/i3status.toml" <<'EOF'
+icons_format = "{icon}"
+
+invert_scrolling = true
+
+[theme]
+theme = "semi-native"
+
+[icons]
+icons = "material-nf"
+
+[[block]]
+block = "focused_window"
+[block.format]
+full = " $title.str(max_w:35) |"
+short = " $title.str(max_w:10) |"
+
+[[block]]
+block = "net"
+format = " $icon {$ssid} "
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "battery"
+device = "BAT0"
+
+[[block]]
+block = "battery"
+device = "BAT1"
+
+[[block]]
+block = "sound"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+[[block]]
+block = "time"
+interval = 5
+format = " $timestamp.datetime(f:'%a %d/%m %R') "
+EOF
+
+mkdir -p "$HOME/.config/i3status-rust"
+ln -sfn "$HOME/.dvhtp/i3status.toml" "$HOME/.config/i3status-rust/config.toml"
 
 # setup ly
 
